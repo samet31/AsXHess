@@ -195,7 +195,7 @@ end
 
 
 function AstenyUI:CreateUI(oyunadi)
-
+print("Selam")
     if game.CoreGui:FindFirstChild("AstenyUI") ~= nil then
         game.CoreGui:FindFirstChild("AstenyUI"):Destroy()
     end
