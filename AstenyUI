@@ -4,10 +4,22 @@ local wlver = "[Beta]"
 local UserInputService = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
+local random = Random.new()
+local kelimeler = {"Z","Q","3","1","Z","D","A","S","W","E","T","w","d","_","*","?","f","g"}
 
+function getRandomLetter()
+	return kelimeler[random:NextInteger(1,#kelimeler)]
+end
 
-
-
+function getRandomString(length)
+	local length = length or 10
+	local str = ''
+	for i=1,length do
+		local randomLetter = getRandomLetter()
+		str = str .. randomLetter
+	end
+	return str
+end
 
 
 function CircleClick(Button, X, Y)
@@ -189,13 +201,13 @@ function AstenyUI:SendMessage(title,msg,duration)
             message.TextXAlignment = Enum.TextXAlignment.Left
 
             TS:Create(MessageBox,TweenInfo.new(0.5),{Position = UDim2.new(0.76, 0,0.820, 0)}):Play()--{0.76, 0},{0.725, 0}
-            wait(duration or 1)
+            wait(duration or 2)
             TS:Create(MessageBox,TweenInfo.new(0.5),{Position = UDim2.new(1, 0,0.820, 0)}):Play()
 end
 
 
 function AstenyUI:CreateUI(oyunadi)
-print("Selam")
+
     if game.CoreGui:FindFirstChild("AstenyUI") ~= nil then
         game.CoreGui:FindFirstChild("AstenyUI"):Destroy()
     end
@@ -318,11 +330,11 @@ print("Selam")
 
         local ilktab = true
         local items = {}
-        function items:vsbl()
+        function items:visble()
             if Main.Visible == true then
                 Main.Visible = false
-                else
-                    Main.Visible = true
+            else
+                Main.Visible = true
             end
         end
         function items:addTab(isim)
@@ -641,7 +653,7 @@ print("Selam")
                     touch_app.ImageRectSize = Vector2.new(36, 36)
                 end
 
-                function pageitems:AddCheckBox(sas,default,callback)
+                function pageitems:AddCheckBox(adis,default,callback)
                     local CheckBox = Instance.new("ImageLabel")
                     local TextButton = Instance.new("TextButton")
                     local TextLabel = Instance.new("TextLabel")
@@ -676,7 +688,7 @@ print("Selam")
                     TextLabel.Size = UDim2.new(0.724907041, 0, 1, 0)
                     TextLabel.ZIndex = 5
                     TextLabel.Font = Enum.Font.ArialBold
-                    TextLabel.Text = sas
+                    TextLabel.Text = adis or "Unnamed CheckBox"
                     TextLabel.TextColor3 = Color3.fromRGB(211, 211, 211)
                     TextLabel.TextSize = 14.000
                     TextLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -731,6 +743,7 @@ print("Selam")
                 end
 
                 function pageitems:AddListbox(isim,items,default,callback)
+
 
                     isim = isim or "Listbox"
                     items = items or {"1","2","3"}
@@ -806,7 +819,7 @@ print("Selam")
 
                     
 
-                    
+                    local items3 =  {}
 
                     local Entry = Instance.new("ImageLabel")
 
@@ -831,7 +844,6 @@ print("Selam")
                         wait(.01)
                         dropdownitems.CanvasSize = UDim2.new(0,0,0,UIListLayout4.AbsoluteContentSize.Y);
                     end)
-
 
                     for i,v in pairs(items) do
                         local TextButton = Instance.new("TextButton")
@@ -895,6 +907,76 @@ print("Selam")
                             pcall(callback,selecteditem)
                         end)
                     end
+                    function  items3:Resfresh(table)
+                        for i , v in pairs(dropdownitems:GetChildren()) do
+                            if v:IsA("TextButton") then
+                                v:Destroy()
+                            end
+                        end
+
+                        for i,v in pairs(table) do
+                            local TextButton = Instance.new("TextButton")
+                            local TextButton_Roundify_8px = Instance.new("ImageLabel")
+    
+    
+                            TextButton.Parent = dropdownitems
+                            TextButton.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+                            TextButton.BackgroundTransparency = 1.000
+                            TextButton.BorderSizePixel = 0
+                            TextButton.Size = UDim2.new(0, 241, 0, 28)
+                            TextButton.ZIndex = 32
+                            TextButton.Font = Enum.Font.ArialBold
+                            TextButton.Text = v
+                            TextButton.TextColor3 = Color3.fromRGB(133,133,133)
+    
+                            TextButton.Name = v
+                            TextButton.TextSize = 14.000
+    
+                            TextButton_Roundify_8px.Name = "TextButton_Roundify_8px"
+                            TextButton_Roundify_8px.Parent = TextButton
+                            TextButton_Roundify_8px.Active = true
+                            TextButton_Roundify_8px.AnchorPoint = Vector2.new(0.5, 0.5)
+                            TextButton_Roundify_8px.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                            TextButton_Roundify_8px.BackgroundTransparency = 1.000
+                            TextButton_Roundify_8px.Position = UDim2.new(0.5, 0, 0.5, 0)
+                            TextButton_Roundify_8px.Selectable = true
+                            TextButton_Roundify_8px.Size = UDim2.new(1, 0, 1, 0)
+                            TextButton_Roundify_8px.ZIndex = 31
+                            TextButton_Roundify_8px.Image = "rbxassetid://3570695787"
+                            TextButton_Roundify_8px.ImageColor3 = Color3.fromRGB(27, 27, 27)
+                            TextButton_Roundify_8px.ScaleType = Enum.ScaleType.Slice
+                            TextButton_Roundify_8px.SliceCenter = Rect.new(100, 100, 100, 100)
+                            TextButton_Roundify_8px.SliceScale = 0.080
+    
+                            if v == selecteditem then
+                                TextButton.TextColor3 = Color3.fromRGB(211,211,211)
+                                pcall(callback,selecteditem)
+                                TextLabel.Text = selecteditem
+                            end
+    
+                            TextButton.MouseEnter:Connect(function()
+                                TextButton_Roundify_8px.ImageColor3 = Color3.fromRGB(55,55,55)
+                                TextButton.TextColor3 = Color3.fromRGB(211,211,211)
+                            end)
+                            TextButton.MouseLeave:Connect(function()
+                                TextButton_Roundify_8px.ImageColor3 = Color3.fromRGB(27, 27, 27)
+                                if v ~= selecteditem then
+                                    TextButton.TextColor3 = Color3.fromRGB(133,133,133)
+                                end 
+                            end)
+                            TextButton.MouseButton1Click:Connect(function()
+                                for i2,v2 in pairs(dropdownitems:GetChildren()) do
+                                    if v2:IsA("TextButton") then
+                                        v2.TextColor3 = Color3.fromRGB(133,133,133)
+                                    end
+                                end
+                                selecteditem = v
+                                TextLabel.Text = v
+                                TextButton.TextColor3 = Color3.fromRGB(211,211,211)
+                                pcall(callback,selecteditem)
+                            end)
+                        end
+                    end
                    
 
                 
@@ -929,6 +1011,7 @@ print("Selam")
                         end
                        end
                     end)
+                    return items3
                 end
                 function pageitems:addKeybind(name,default,callback)
                     local Keybind = Instance.new("ImageLabel")
@@ -1022,11 +1105,10 @@ print("Selam")
                     end)   
                 end
                 
-            return pageitems;
+            return pageitems
 
         end
-        return items;
+        return items
         
 end
-
-return AstenyUI;
+return AstenyUI
