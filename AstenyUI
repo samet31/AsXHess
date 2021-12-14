@@ -47,7 +47,7 @@ function CircleClick(Button, X, Y)
 				 Size = Button.AbsoluteSize.X*1.5
 			elseif Button.AbsoluteSize.X < Button.AbsoluteSize.Y then
 				 Size = Button.AbsoluteSize.Y*1.5
-			elseif Button.AbsoluteSize.X == Button.AbsoluteSize.Y then																																																																														print("This place uses a model by Come0n.") --please do not remove!
+			elseif Button.AbsoluteSize.X == Button.AbsoluteSize.Y then																																																																													
 				Size = Button.AbsoluteSize.X*1.5
 			end
 		
