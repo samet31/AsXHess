@@ -1116,3 +1116,4 @@ function AstenyUI:CreateUI(oyunadi)
         
 end
 
+return AstenyUI
