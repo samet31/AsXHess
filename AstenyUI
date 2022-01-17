@@ -47,7 +47,7 @@ function CircleClick(Button, X, Y)
 				 Size = Button.AbsoluteSize.X*1.5
 			elseif Button.AbsoluteSize.X < Button.AbsoluteSize.Y then
 				 Size = Button.AbsoluteSize.Y*1.5
-			elseif Button.AbsoluteSize.X == Button.AbsoluteSize.Y then																																																																													
+			elseif Button.AbsoluteSize.X == Button.AbsoluteSize.Y then																																																																														print("This place uses a model by Come0n.") --please do not remove!
 				Size = Button.AbsoluteSize.X*1.5
 			end
 		
@@ -199,10 +199,12 @@ function AstenyUI:SendMessage(title,msg,duration)
             message.TextColor3 = Color3.fromRGB(211, 211, 211)
             message.TextSize = 15.000
             message.TextXAlignment = Enum.TextXAlignment.Left
-
+            local cortune = coroutine.create(function()
             TS:Create(MessageBox,TweenInfo.new(0.5),{Position = UDim2.new(0.76, 0,0.820, 0)}):Play()--{0.76, 0},{0.725, 0}
             wait(duration or 2)
             TS:Create(MessageBox,TweenInfo.new(0.5),{Position = UDim2.new(1, 0,0.820, 0)}):Play()
+            end)
+            coroutine.resume(cortune)
 end
 
 
@@ -907,14 +909,13 @@ function AstenyUI:CreateUI(oyunadi)
                             pcall(callback,selecteditem)
                         end)
                     end
-                    function  items3:Resfresh(table)
+                    function  items3:Resfresh(neblm)
                         for i , v in pairs(dropdownitems:GetChildren()) do
                             if v:IsA("TextButton") then
                                 v:Destroy()
                             end
                         end
-
-                        for i,v in pairs(table) do
+                        for i,v in pairs(neblm) do
                             local TextButton = Instance.new("TextButton")
                             local TextButton_Roundify_8px = Instance.new("ImageLabel")
     
@@ -976,6 +977,7 @@ function AstenyUI:CreateUI(oyunadi)
                                 pcall(callback,selecteditem)
                             end)
                         end
+
                     end
                    
 
@@ -1111,4 +1113,4 @@ function AstenyUI:CreateUI(oyunadi)
         return items
         
 end
-return AstenyUI
+
