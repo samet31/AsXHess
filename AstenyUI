@@ -203,6 +203,8 @@ function AstenyUI:SendMessage(title,msg,duration)
             TS:Create(MessageBox,TweenInfo.new(0.5),{Position = UDim2.new(0.76, 0,0.820, 0)}):Play()--{0.76, 0},{0.725, 0}
             wait(duration or 2)
             TS:Create(MessageBox,TweenInfo.new(0.5),{Position = UDim2.new(1, 0,0.820, 0)}):Play()
+            wait(1)
+            MessageBox:Destroy()
             end)
             coroutine.resume(cortune)
 end
@@ -1113,4 +1115,4 @@ function AstenyUI:CreateUI(oyunadi)
         return items
         
 end
-return AstenyUI
+
