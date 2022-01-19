@@ -209,13 +209,7 @@ function AstenyUI:SendMessage(title,msg,duration)
             coroutine.resume(cortune)
 end
 
-function AstenyUI:VisibleToogle()
-    if game.CoreGui:FindFirstChild("AstenyUI").Main.Visible == true then
-        game.CoreGui:FindFirstChild("AstenyUI").Main.Visible = false
-        else
-            game.CoreGui:FindFirstChild("AstenyUI").Main.Visible = true
-      end
-end
+
 
 function AstenyUI:CreateUI(oyunadi)
 
