@@ -209,6 +209,13 @@ function AstenyUI:SendMessage(title,msg,duration)
             coroutine.resume(cortune)
 end
 
+function AstenyUI:VisibleToogle()
+    if game.CoreGui:FindFirstChild("AstenyUI").Main.Visible == true then
+        game.CoreGui:FindFirstChild("AstenyUI").Main.Visible = false
+        else
+            game.CoreGui:FindFirstChild("AstenyUI").Main.Visible = true
+      end
+end
 
 function AstenyUI:CreateUI(oyunadi)
 
@@ -334,13 +341,8 @@ function AstenyUI:CreateUI(oyunadi)
 
         local ilktab = true
         local items = {}
-        function items:visble()
-            if Main.Visible == true then
-                Main.Visible = false
-            else
-                Main.Visible = true
-            end
-        end
+        
+        
         function items:addTab(isim)
             local TabBtn = Instance.new("ImageLabel")
             local Frame = Instance.new("ImageLabel")
@@ -1116,4 +1118,3 @@ function AstenyUI:CreateUI(oyunadi)
         
 end
 
-return AstenyUI
