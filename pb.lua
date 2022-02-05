@@ -1,14 +1,14 @@
-_G.dkAl =  5
-_G.AutoMembership = true
-_G.on = true
 
-while wait(20) do
-    if _G.AutoMembership == true  then
-        local number_1 = _G.dkAl
-        local Target = game:GetService("ReplicatedStorage").Events.MembershipEvent;
-        Target:FireServer(number_1);
+
+task.spawn(function()
+    while wait(20) do
+        if _G.AutoMembership == true  then
+            local number_1 = _G.dkAl
+            local Target = game:GetService("ReplicatedStorage").Events.MembershipEvent;
+            Target:FireServer(number_1);
+        end
     end
-end
+end)
 
 
 
